@@ -12,7 +12,7 @@ import os
 
 class Config(BaseModel):
 
-    video_at: list = ["xmleijun"]  # 你要@的人的抖音号，默认是必须@作者的，
+    video_at: list = [""]  # 你要@的人的抖音号，默认是必须@作者的，
     # 2.4以上版本无需提供昵称，将通过抖音号自动获取
 
     start_frame: int = 20  # 起始帧
@@ -33,7 +33,7 @@ class Config(BaseModel):
     cookie_path: str = os.path.join(_path, "cookie.json")  # cookie路径
     remove_enterprise: bool = True  # 是否排除企业号，建议排除否则取到政治号就不好了
     remove_custom_verify: bool = True  # 排除普通认证号
-    remove_video: bool = True  # 是否自动删除video文件夹中的视频
+    remove_video: bool = False  # 是否自动删除video文件夹中的视频
     duration: int = 30  # 筛选>=xx秒的视频
     remove_images: bool = True  # 是否排除图集作品，必须排除，否则失败
     city: bool = False  # 是否添加位置

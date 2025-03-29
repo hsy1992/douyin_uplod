@@ -29,3 +29,22 @@
 [2024-04-06 16:35:54,481]-warnings.py-109-MainThread-D:\编程\python\douyin\发布小程序\douyin_uplod\venv\Lib\site-packages\moviepy\video\io\ffmpeg_reader.py:123: UserWarning: Warning: in file D:\编程\python\douyin\发布小程序\douyin_uplod\video\标题1标题2@以仁促达 —来自：音乐榜单的第8个音乐《Zhurek（副歌）》第21页@木南北北 的作品2.mp4, 6220800 bytes wanted but 0 bytes read,at frame 281/282, at time 9.37/9.37 sec. Using the last valid frame instead.
   warnings.warn("Warning: in file %s, "%(self.filename)+
 
+[2025-01-22 10:40:06,252]-warnings.py-109-MainThread-G:\project\douyin_uplod\venv\lib\site-packages\moviepy\video\io\ffmpeg_reader.py:123: UserWarning: Warning: in file G:\project\douyin_uplod\video\标题1标题2@ —来自：音乐榜单的第10个音乐《Cute》第14页@喵阿灿吖～ 的作品2.mp4, 6220800 bytes wanted but 0 bytes read,at frame 1676/1677, at time 55.87/55.87 sec. Using the last valid frame instead.
+  warnings.warn("Warning: in file %s, "%(self.filename)+
+
+[2025-01-22 10:40:37,402]-main.py-473-MainThread-发布视频失败，可能网页加载失败了
+[2025-01-22 11:10:03,704]-main.py-473-MainThread-发布视频失败，可能网页加载失败了
+[2025-01-22 11:10:33,725]-main.py-610-MainThread-发布视频失败，cookie已失效，请登录后再试
+[2025-01-22 11:15:19,820]-main.py-473-MainThread-发布视频失败，可能网页加载失败了
+[2025-01-22 11:16:19,849]-main.py-610-MainThread-发布视频失败，cookie已失效，请登录后再试
+[2025-01-22 11:18:38,083]-main.py-349-MainThread-'NoneType' object is not iterable
+[2025-01-22 11:18:44,042]-main.py-349-MainThread-'NoneType' object is not iterable
+[2025-01-22 11:20:00,808]-main.py-475-MainThread-发布视频失败，可能网页加载失败了
+[2025-01-22 11:21:42,574]-main.py-475-MainThread-发布视频失败，可能网页加载失败了
+[2025-01-22 11:22:42,593]-main.py-612-MainThread-发布视频失败，cookie已失效，请登录后再试
+[2025-01-22 11:26:18,655]-main.py-476-MainThread-发布视频失败，可能网页加载失败了
+[2025-01-22 11:27:18,671]-main.py-613-MainThread-发布视频失败，cookie已失效，请登录后再试
+[2025-01-22 11:41:33,161]-warnings.py-109-MainThread-G:\project\douyin_uplod\venv\lib\site-packages\moviepy\video\io\ffmpeg_reader.py:123: UserWarning: Warning: in file G:\project\douyin_uplod\video\标题1标题2@ —来自：音乐榜单的第45个音乐《If December Never Ends》第16页@杨圣坤(25年春款定货会)… 的作品2.mp4, 6220800 bytes wanted but 0 bytes read,at frame 1562/1563, at time 53.04/53.04 sec. Using the last valid frame instead.
+  warnings.warn("Warning: in file %s, "%(self.filename)+
+
+[2025-01-22 11:42:04,242]-main.py-477-MainThread-发布视频失败，可能网页加载失败了

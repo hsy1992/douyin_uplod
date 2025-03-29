@@ -18,6 +18,7 @@ from tqdm import tqdm
 from config import conigs
 from logs import config_log
 from datetime import datetime
+import numpy as np
 
 
 def delete_all_files(folder_path):
@@ -54,6 +55,7 @@ async def merge_images_video(image_folder, output_file, video_path, fps=None):
     :return:
     """
     # 获取文件夹内所有图片的列表
+    print(image_folder)
     image_list = os.listdir(image_folder)
     # 获取图片总数量
     index = len(image_list)
@@ -119,7 +121,7 @@ async def merge_images_video(image_folder, output_file, video_path, fps=None):
         logging.info(e)
 
 
-async def set_video_frame(video_path):
+async def set_video_frame(video_path, title):
     """
     抽取视频帧，返回fps用于后面合成
     :param video_path: 视频文件路径
@@ -137,7 +139,7 @@ async def set_video_frame(video_path):
     end_frame = frame_count - (conigs.end_frame + 1)  # 结束帧
 
     # 创建保存抽取帧的目录
-    output_dir = 'frames/'
+    output_dir = os.path.join(os.path.abspath(""), "frames")
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     else:
@@ -153,14 +155,16 @@ async def set_video_frame(video_path):
             if not ret:
                 break
             output_file = os.path.join(output_dir, f"{i}.jpg")
+            # print(output_file)
             cv2.imwrite(output_file, frame)
             pbar.update(1)
             # print(f"已处理 {i + 1}/{end_frame + 1} 帧")
 
-    # print("所有帧都已成功抽取！")
+    print("所有帧都已成功抽取！")
     # 关闭视频流
     video.release()
-    await merge_images_video(os.path.join(os.path.abspath(""), "frames"), video_path[:-4] + "2.mp4", video_path, fps)
+    # print(os.path.join(os.path.abspath(""), "frames").join(title))
+    await merge_images_video(output_dir, video_path[:-4] + "2.mp4", video_path, fps)
 
 
 class douyin():
@@ -216,6 +220,7 @@ class douyin():
         music_list = res["music_list"][x]
         self.title = f"—来自：音乐榜单的第{(x + 1)}个音乐《{music_list['music_info']['title']}》"
         self.ids = music_list["music_info"]["id_str"]
+        print("title", self.title)
         print("music_id:", self.ids)
         try:
             await self.get_filter()
@@ -408,7 +413,7 @@ class douyin():
             print("正在处理视频")
             # clip = VideoFileClip(self.video_path)
             # clip.subclip(10, 20)  # 剪切
-            await set_video_frame(self.video_path)
+            await set_video_frame(self.video_path, self.title)
             # self.video_path这个文件名不能改，上传就是上传这个
             self.video_path = os.path.join(conigs.video_path, desc + "3.mp4")
             # clip.write_videofile(self.video_path)  # 保存视频
@@ -418,6 +423,9 @@ class douyin():
                 f.write(",".join(self.video_ids)[1:])
 
 
+"""
+    上传抖音
+"""
 class upload_douyin(douyin):
     def __init__(self, timeout: int, cookie_file: str):
         super(upload_douyin, self).__init__()
@@ -601,9 +609,9 @@ class upload_douyin(douyin):
         except Exception as e:
             print("发布视频失败，cookie已失效，请登录后再试\n", e)
             logging.info("发布视频失败，cookie已失效，请登录后再试")
-        finally:
-            delete_all_files(os.path.join(self.path, "frames"))
-            delete_all_files(os.path.join(self.path, "video"))
+        # finally:
+            # delete_all_files(os.path.join(self.path, "frames"))
+            # delete_all_files(os.path.join(self.path, "video"))
 
     async def main(self):
         async with async_playwright() as playwright:
